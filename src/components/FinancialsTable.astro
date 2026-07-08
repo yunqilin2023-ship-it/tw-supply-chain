@@ -1,0 +1,94 @@
+---
+import type { FinancialSnapshot, RevenueSnapshot } from "../lib/dataAccess";
+
+interface Props {
+  financials: FinancialSnapshot[];
+  revenue: RevenueSnapshot[];
+}
+
+const { financials, revenue } = Astro.props;
+
+function fmt(n: number | null): string {
+  if (n === null) return "—";
+  return n.toLocaleString("zh-TW");
+}
+
+function fmtPct(n: number | null): string {
+  if (n === null) return "—";
+  return `${n.toFixed(2)}%`;
+}
+---
+
+<div class="section">
+  <h2>近期財報(季)</h2>
+  {
+    financials.length === 0 ? (
+      <p class="empty-state">
+        尚無財報快照。資料會隨每次排程更新逐季累積,目前僅顯示已抓取到的期別。
+      </p>
+    ) : (
+      <>
+        <table class="financials">
+          <thead>
+            <tr>
+              <th>期別</th>
+              <th>營業收入(千元)</th>
+              <th>營業利益(千元)</th>
+              <th>本期淨利(千元)</th>
+              <th>EPS(元)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {financials.map((f) => (
+              <tr>
+                <td>{f.reportDate}</td>
+                <td>{fmt(f.revenue)}</td>
+                <td>{fmt(f.operatingIncome)}</td>
+                <td>{fmt(f.netIncome)}</td>
+                <td>{fmt(f.eps)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <p class="source-note">
+          資料來源:{financials[financials.length - 1].sourceEndpoint} ·
+          最後更新 {financials[financials.length - 1].fetchedAt.slice(0, 10)}
+        </p>
+      </>
+    )
+  }
+</div>
+
+<div class="section">
+  <h2>月營收</h2>
+  {
+    revenue.length === 0 ? (
+      <p class="empty-state">尚無月營收快照。</p>
+    ) : (
+      <>
+        <table class="financials">
+          <thead>
+            <tr>
+              <th>年月</th>
+              <th>當月營收(千元)</th>
+              <th>去年同月增減</th>
+            </tr>
+          </thead>
+          <tbody>
+            {revenue.map((r) => (
+              <tr>
+                <td>{r.yearMonth}</td>
+                <td>{fmt(r.revenue)}</td>
+                <td>{fmtPct(r.yoyGrowthPct)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <p class="source-note">
+          資料來源:{revenue[revenue.length - 1].sourceEndpoint} · 最後更新{" "}
+          {revenue[revenue.length - 1].fetchedAt.slice(0, 10)}
+        </p>
+      </>
+    )
+  }
+</div>

@@ -1,0 +1,9 @@
+[
+  {
+    "yearMonth": "11505",
+    "revenue": 416975163,
+    "yoyGrowthPct": 30.09498020271696,
+    "sourceEndpoint": "openapi.twse.com.tw/v1/opendata/t187ap05_L",
+    "fetchedAt": "2026-07-08T09:18:19.353Z"
+  }
+]

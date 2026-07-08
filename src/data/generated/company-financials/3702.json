@@ -1,0 +1,17 @@
+[
+  {
+    "year": "115",
+    "quarter": "1",
+    "reportDate": "115Q1",
+    "revenue": 316500457,
+    "operatingIncome": 8470625,
+    "netIncome": 5750788,
+    "eps": 3.3,
+    "totalAssets": 479508376,
+    "totalLiabilities": 386867313,
+    "totalEquity": 92641063,
+    "bookValuePerShare": 53.61,
+    "sourceEndpoint": "openapi.twse.com.tw/v1/opendata/t187ap06_L_ci + t187ap07_L_ci",
+    "fetchedAt": "2026-07-08T09:18:19.353Z"
+  }
+]

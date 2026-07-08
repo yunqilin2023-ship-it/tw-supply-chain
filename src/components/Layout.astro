@@ -1,0 +1,31 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} | 台灣產業供應鏈</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a href={base}>台灣產業供應鏈</a>
+    </header>
+    <main class="container">
+      <slot />
+      <p class="disclaimer">
+        本網站數據取自台灣證券交易所(TWSE)與證券櫃檯買賣中心(TPEx)公開資訊,僅供參考,不構成投資建議。
+      </p>
+    </main>
+  </body>
+</html>

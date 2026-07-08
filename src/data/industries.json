@@ -1,0 +1,25 @@
+[
+  {
+    "slug": "semiconductor",
+    "nameZh": "半導體",
+    "nameEn": "Semiconductor",
+    "summary": "台灣最具代表性的產業,涵蓋 IC 設計、矽晶圓與化學材料、設備、晶圓代工、封裝測試,到下游 IC 通路,是全球半導體供應鏈的核心一環。",
+    "tiers": [
+      {
+        "key": "upstream",
+        "labelZh": "上游",
+        "subCategories": ["IC設計", "矽晶圓", "化學材料/氣體", "半導體設備", "封裝材料(載板/銅箔基板)"]
+      },
+      {
+        "key": "midstream",
+        "labelZh": "中游",
+        "subCategories": ["晶圓代工", "封裝測試"]
+      },
+      {
+        "key": "downstream",
+        "labelZh": "下游",
+        "subCategories": ["IC通路/模組"]
+      }
+    ]
+  }
+]

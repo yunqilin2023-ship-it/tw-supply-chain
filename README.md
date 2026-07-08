@@ -1,43 +1,26 @@
-# Astro Starter Kit: Minimal
+# 台灣產業供應鏈網站
+
+給散戶投資人使用的台灣產業供應鏈網站。首頁以卡片呈現產業分類,點進去是該產業的上中下游供應鏈圖,點進廠商可看公司介紹、近期財報與股價走勢。
+
+MVP 先涵蓋**半導體**產業,資料涵蓋 TWSE 上市與 TPEx 上櫃公司。
+
+## 資料來源與限制
+
+- 公司基本資料、財報、月營收:[TWSE OpenAPI](https://openapi.twse.com.tw/) / [TPEx OpenAPI](https://www.tpex.org.tw/openapi/)。這些端點只回傳**最新一期快照**,3 年趨勢靠 `refresh-data.yml` 排程逐季/逐月累積,新公司上線初期只會看到近期資料,之後隨時間自動補齊。
+- TWSE 個股股價歷史:舊版端點(`www.twse.com.tw/rwd/...`),可一次取得 3 年月線,已在 `scripts/fetch-data.ts` 做過一次性回填。
+- TPEx 個股股價歷史:目前沒有對應的公開端點(已實測 TPEx OpenAPI 全部 225 個端點,均為全市場單日快照),同樣靠排程累積。
+- 所有數字皆附 `sourceEndpoint` / `fetchedAt` 欄位,可回溯查證來源。
+
+## 開發
 
 ```sh
-npm create astro@latest -- --template minimal
+npm install
+npm run dev              # 本機開發伺服器
+npm run fetch-data       # 抓取最新快照(預設只抓 1 個月股價)
+npm run fetch-data -- --price-months=36   # 抓 3 年 TWSE 股價歷史(僅需執行一次)
+npm run build            # 建置靜態網站
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 部署
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+推上 `main` 分支會觸發 `.github/workflows/deploy.yml` 自動建置並部署到 GitHub Pages。`.github/workflows/refresh-data.yml` 每個交易日排程重新抓取最新快照並自動 commit。

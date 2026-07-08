@@ -1,0 +1,28 @@
+name: Refresh data snapshots
+
+on:
+  schedule:
+    # Daily, after TWSE/TPEx market close (13:30 Taipei = 05:30 UTC)
+    - cron: "30 6 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npm run fetch-data -- --price-months=1
+      - name: Commit updated snapshots if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/data/generated
+          git diff --cached --quiet || git commit -m "chore: refresh data snapshots"
+          git push

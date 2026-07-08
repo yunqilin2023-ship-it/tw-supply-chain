@@ -1,0 +1,17 @@
+[
+  {
+    "year": "115",
+    "quarter": "1",
+    "reportDate": "115Q1",
+    "revenue": 13984798,
+    "operatingIncome": 1475373,
+    "netIncome": 1895856,
+    "eps": 3.97,
+    "totalAssets": 211036922,
+    "totalLiabilities": 117657464,
+    "totalEquity": 93379458,
+    "bookValuePerShare": 195.32,
+    "sourceEndpoint": "tpex.org.tw/openapi/v1/mopsfin_t187ap06_O_ci + mopsfin_t187ap07_O_ci",
+    "fetchedAt": "2026-07-08T09:18:19.353Z"
+  }
+]

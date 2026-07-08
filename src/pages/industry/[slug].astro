@@ -1,0 +1,61 @@
+---
+import Layout from "../../components/Layout.astro";
+import {
+  getAllIndustries,
+  getIndustry,
+  getCompaniesByIndustryAndTier,
+} from "../../lib/dataAccess";
+
+export function getStaticPaths() {
+  return getAllIndustries().map((industry) => ({
+    params: { slug: industry.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const industry = getIndustry(slug!)!;
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout title={industry.nameZh}>
+  <p class="breadcrumb"><a href={base}>首頁</a> / {industry.nameZh}</p>
+  <h1 class="page-title">{industry.nameZh}供應鏈</h1>
+  <p class="page-summary">{industry.summary}</p>
+
+  <div class="tier-columns">
+    {
+      industry.tiers.map((tier) => {
+        const companiesInTier = getCompaniesByIndustryAndTier(
+          industry.slug,
+          tier.key
+        );
+        return (
+          <section class={`tier-column ${tier.key}`}>
+            <h2>{tier.labelZh}</h2>
+            {tier.subCategories.map((subCategory) => {
+              const companies = companiesInTier.filter(
+                (c) => c.subCategory === subCategory
+              );
+              if (companies.length === 0) return null;
+              return (
+                <div class="sub-category">
+                  <h3>{subCategory}</h3>
+                  {companies.map((company) => (
+                    <a
+                      class="company-chip"
+                      href={`${base}company/${company.code}/`}
+                    >
+                      {company.nameZh}
+                      <span class="code">{company.code}</span>
+                      <span class="exchange-badge">{company.exchange}</span>
+                    </a>
+                  ))}
+                </div>
+              );
+            })}
+          </section>
+        );
+      })
+    }
+  </div>
+</Layout>

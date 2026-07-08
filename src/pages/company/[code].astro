@@ -1,0 +1,62 @@
+---
+import Layout from "../../components/Layout.astro";
+import FinancialsTable from "../../components/FinancialsTable.astro";
+import PriceChart from "../../components/PriceChart.astro";
+import {
+  getAllCompanies,
+  getCompany,
+  getIndustry,
+  getCompanyFinancials,
+  getCompanyRevenue,
+  getCompanyPrices,
+} from "../../lib/dataAccess";
+
+export function getStaticPaths() {
+  return getAllCompanies().map((company) => ({
+    params: { code: company.code },
+  }));
+}
+
+const { code } = Astro.params;
+const company = getCompany(code!)!;
+const industry = getIndustry(company.industrySlug)!;
+const financials = await getCompanyFinancials(company.code);
+const revenue = await getCompanyRevenue(company.code);
+const prices = await getCompanyPrices(company.code);
+const base = import.meta.env.BASE_URL;
+
+const tierLabel = industry.tiers.find((t) => t.key === company.tier)?.labelZh ?? company.tier;
+---
+
+<Layout title={company.nameZh}>
+  <p class="breadcrumb">
+    <a href={base}>首頁</a> / <a href={`${base}industry/${industry.slug}/`}>{industry.nameZh}</a> / {company.nameZh}
+  </p>
+
+  <div class="company-header">
+    <h1 class="page-title">
+      {company.nameZh}
+      <span class="exchange-badge">{company.exchange} {company.code}</span>
+    </h1>
+  </div>
+  <p class="company-meta">
+    {company.nameEn} · {industry.nameZh} · {tierLabel} / {company.subCategory}
+  </p>
+
+  <div class="section">
+    <h2>公司介紹</h2>
+    <p>{company.description}</p>
+    <p class="source-note">
+      資料來源:{company.descriptionSource} · 最後確認 {company.lastVerifiedDate}
+      {company.website && (
+        <>
+          {" "}
+          · <a href={company.website} target="_blank" rel="noopener noreferrer">官方網站</a>
+        </>
+      )}
+    </p>
+  </div>
+
+  <PriceChart prices={prices} />
+  <FinancialsTable financials={financials} revenue={revenue} />
+</Layout>
