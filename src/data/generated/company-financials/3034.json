@@ -22,11 +22,11 @@
     "operatingIncome": 10493479,
     "netIncome": 10094972,
     "eps": 16.59,
-    "totalAssets": 119088269,
-    "totalLiabilities": 50127209,
-    "totalEquity": 68961060,
+    "totalAssets": null,
+    "totalLiabilities": null,
+    "totalEquity": null,
     "bookValuePerShare": 113.33,
     "sourceEndpoint": "openapi.twse.com.tw/v1/opendata/t187ap06_L_ci + t187ap07_L_ci",
-    "fetchedAt": "2026-08-05T09:19:14.172Z"
+    "fetchedAt": "2026-08-06T09:22:30.445Z"
   }
 ]
