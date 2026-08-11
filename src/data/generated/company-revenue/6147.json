@@ -12,5 +12,12 @@
     "yoyGrowthPct": 27.061323578243396,
     "sourceEndpoint": "tpex.org.tw/openapi/v1/mopsfin_t187ap05_O",
     "fetchedAt": "2026-08-10T08:13:55.179Z"
+  },
+  {
+    "yearMonth": "11507",
+    "revenue": 2522679,
+    "yoyGrowthPct": 39.17821989205281,
+    "sourceEndpoint": "tpex.org.tw/openapi/v1/mopsfin_t187ap05_O",
+    "fetchedAt": "2026-08-11T07:46:24.741Z"
   }
 ]
