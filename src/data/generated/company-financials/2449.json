@@ -27,6 +27,6 @@
     "totalEquity": null,
     "bookValuePerShare": 51.25,
     "sourceEndpoint": "openapi.twse.com.tw/v1/opendata/t187ap06_L_ci + t187ap07_L_ci",
-    "fetchedAt": "2026-08-12T07:59:41.629Z"
+    "fetchedAt": "2026-08-14T07:57:32.719Z"
   }
 ]
