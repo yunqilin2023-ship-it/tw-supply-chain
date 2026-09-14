@@ -19,5 +19,12 @@
     "yoyGrowthPct": 36.74599051787117,
     "sourceEndpoint": "openapi.twse.com.tw/v1/opendata/t187ap05_L",
     "fetchedAt": "2026-09-09T11:45:09.042Z"
+  },
+  {
+    "yearMonth": "11508",
+    "revenue": 4080093,
+    "yoyGrowthPct": 31.577957840545338,
+    "sourceEndpoint": "openapi.twse.com.tw/v1/opendata/t187ap05_L",
+    "fetchedAt": "2026-09-14T13:11:57.786Z"
   }
 ]
