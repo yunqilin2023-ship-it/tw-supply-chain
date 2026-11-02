@@ -28,5 +28,20 @@
     "bookValuePerShare": 80.69,
     "sourceEndpoint": "tpex.org.tw/openapi/v1/mopsfin_t187ap06_O_ci + mopsfin_t187ap07_O_ci",
     "fetchedAt": "2026-10-29T13:31:29.577Z"
+  },
+  {
+    "year": "115",
+    "quarter": "3",
+    "reportDate": "115Q3",
+    "revenue": 42303815,
+    "operatingIncome": 10753480,
+    "netIncome": 7458345,
+    "eps": 25.41,
+    "totalAssets": 58672652,
+    "totalLiabilities": 30540656,
+    "totalEquity": 28131996,
+    "bookValuePerShare": 93.93,
+    "sourceEndpoint": "tpex.org.tw/openapi/v1/mopsfin_t187ap06_O_ci + mopsfin_t187ap07_O_ci",
+    "fetchedAt": "2026-11-02T16:27:04.656Z"
   }
 ]
