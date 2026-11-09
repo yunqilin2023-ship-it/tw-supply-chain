@@ -28,5 +28,20 @@
     "bookValuePerShare": 77.33,
     "sourceEndpoint": "openapi.twse.com.tw/v1/opendata/t187ap06_L_ci + t187ap07_L_ci",
     "fetchedAt": "2026-10-29T13:31:29.577Z"
+  },
+  {
+    "year": "115",
+    "quarter": "3",
+    "reportDate": "115Q3",
+    "revenue": 69764228,
+    "operatingIncome": 10763300,
+    "netIncome": 8801758,
+    "eps": 9.05,
+    "totalAssets": null,
+    "totalLiabilities": null,
+    "totalEquity": null,
+    "bookValuePerShare": 78.11,
+    "sourceEndpoint": "openapi.twse.com.tw/v1/opendata/t187ap06_L_ci + t187ap07_L_ci",
+    "fetchedAt": "2026-11-09T16:45:03.536Z"
   }
 ]
